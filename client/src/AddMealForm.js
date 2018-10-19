@@ -12,8 +12,25 @@ class AddMealForm extends Component {
   }
 
   handleClick() {
+    // we could call a function passed as a prop that will close the form once it's submitted
+    // need to make request to backend api
     this.setState({clicked: true});
-    console.log(this.state.clicked);
+    // console.log("fuck me up");
+
+    fetch('/api/newfood/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({author: "gabe", description: "Burrito", number: 4, name: "Gabe's Burrito" })
+    })
+    .then(res => res.text())
+    .then((res) => {
+      console.log(res);
+      // if (res.success) {
+      //   console.log(res.value);
+      // } else {
+      //   console.log("There was an issue posting the request");
+      // }
+    });
   }
 
   render() {
@@ -35,7 +52,7 @@ class AddMealForm extends Component {
           <label>Description</label>
           <input placeholder='A lit ass burrito' />
         </Form.Field>
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' onClick={this.handleClick}>Add my meal!</Button>
       </Form>
     );
   }
