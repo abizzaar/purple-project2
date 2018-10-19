@@ -1,6 +1,8 @@
 # Compañero - A Food Sharing Mobile-Compatible Web Application
 
-Built using the MERN stack
+*An application to reduce food waste, optimize food cost, and create community using the power of sharing meals!*
+
+Built using the MERN stack, a software stack of free and open-source JS software for web development consisting of MongoDB, Express.js, React.js, Node.js.
 
 Technologies Used:
 ---------
