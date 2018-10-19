@@ -4,25 +4,32 @@ import './App.css';
 import Nav from './Nav.js'
 import Posts from './Posts.js'
 import AddMeal from './AddMeal.js'
-import 'whatwg-fetch';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      data: [],
       author: '',
       name: '',
       description: '',
       number: '',
     };
+    this.postToServer = this.postToServer.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-/* 
+
   componentDidMount() {
     this.loadPostsFromServer();
     const { author, text, name, description, number, updateId } = this.state;
     if (!this.pollInterval) {
       this.pollInterval = setInterval(this.loadPostsFromServer, 2000);
     }
+  }
+
+  componentWillUnmount() {
+    if (this.pollInterval) clearInterval(this.pollInterval);
+    this.pollInterval = null;
   }
 
   loadPostsFromServer = () => {
@@ -34,14 +41,44 @@ class App extends Component {
         if (!res.success) this.setState({ error: res.error });
         else this.setState({ data: res.data });
       });
-  } */
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  /* use to delete all posts */
+  deletePosts = () => {
+    fetch('/api/posts/', { method: 'DELETE' })
+      .then(data => data.json())
+      .then((res) => {
+        if (!res.success) this.setState({ error: res.error });
+        else this.setState({ data: res.data });
+      });
+  }
+
+  postToServer() {
+    const { author, name, number, description } = this.state;
+    const data = [...this.state.data, { author, name, description, number }];
+    this.setState({ data });
+    fetch('/api/newfood/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({author: this.state.author, description, number, name, id:100})
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) console.log("holyy");
+      else this.setState({ author: '', description: '', number: '', name: '' });
+    });
+  }
+
+
 
   render() {
     return (
       <div>
         <Nav />
-        <Posts />
-        <AddMeal />
+        <Posts posts={this.state.data}/>
+        <AddMeal handleChange={this.handleChange} postToServer={this.postToServer}/>
       </div>
     );
   }

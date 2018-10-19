@@ -11,21 +11,31 @@ const buttonCss = {
   color: "white"
 }
 
+const header = {
+  textTransform: "uppercase"
+}
+
 
 const Post = (props) => {
+  let posts = [];
+  for (let post of props.posts) {
+    posts.push(
+      <div  style={lowerNavCss} class='ui card'>
+      <div class='content'>
+        <div style={header} class='header'>{post.name}</div>
+        <div class='meta'>&#8226; by {post.author} </div>
+        <div class='meta'>&#8226; MEALS AVAILABLE: {post.number}</div>
+        <div class='description'>
+          {post.description}
+        </div>
+      </div>
+      <button style={buttonCss} class="ui button">I WANT THIS</button>
+    </div>
+    )
+  }
   return (
     <div>
-      <div  style={lowerNavCss} class='ui card'>
-        <div class='content'>
-          <div class='header'>NAME OF FOOD</div>
-          <div class='meta'>&#8226; MEALS AVAILABLE: 4</div>
-          <div class='meta'>&#8226; INGREDIENTS: tomato, lettuce, blah </div>
-          <div class='description'>
-            This shit is mad tasty. Get in the mix you savage yeee
-          </div>
-        </div>
-        <button style={buttonCss} class="ui button">I WANT THIS</button>
-      </div>
+    {posts}
   </div>
   );
 };

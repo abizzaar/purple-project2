@@ -7,6 +7,11 @@ const lowerNavCss = {
   marginTop: "2rem"
 }
 
+const buttonCSS = {
+  display: "block",
+  margin: "auto"
+}
+
 class AddMeal extends Component {
 
   constructor(props) {
@@ -19,7 +24,7 @@ class AddMeal extends Component {
     this.showButtonText = this.showButtonText.bind(this);
   }
 
-  handleClick() {
+  handleClick(e) {
     if (this.state.clicked) {
       this.setState({clicked: false});
     } else {
@@ -30,24 +35,34 @@ class AddMeal extends Component {
   showForm() {
     if (this.state.clicked) {
       return (
-        <AddMealForm />
+        <AddMealForm handleChange={this.props.handleChange} postToServer={this.postToServer}/>
       );
     }
   }
 
   showButtonText() {
     if (this.state.clicked) {
-      return ("Don't add your own meal :'(");
+      return ("Close");
     } else {
       return ("Add your own meal!");
     }
+  }
+
+  postToServer = (e) => {
+    this.props.postToServer(e);
+    this.handleClick();
+    console.log(e.target.value);
+  }
+
+  handleChange(e) {
+    this.props.handleChange(e);
   }
 
   render() {
     return (
       <Container>
         <div style={lowerNavCss}>
-          <Button onClick={this.handleClick}>
+          <Button style={buttonCSS} onClick={this.handleClick}>
             {this.showButtonText()}
           </Button>
           {this.showForm()}

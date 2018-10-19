@@ -30,17 +30,11 @@ router.post('/newfood', (req, res) => {
   const post = new Post();
   // body parser lets us use the req.body
   const { author, description, number, name } = req.body;
-  if (!author || !description || !number || !name) {
-    // we should throw an error. we can do this check on the front end
-    return res.json({
-      success: false,
-      error: 'You must provide an author, description, number and name'
-    });
-  }
   post.author = author;
   post.description = description;
   post.number=number;
   post.name=name;
+  post.id = id;
   post.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -70,6 +64,13 @@ router.post('/newlike', (req, res) => {
         return res.json({ success: true});
       });
     });
+  });
+});
+
+router.delete('/posts', (req, res) => {
+  Post.remove({}, (error, comment) => {
+    if (error) return res.json({ success: false, error });
+    return res.json({ success: true });
   });
 });
 
