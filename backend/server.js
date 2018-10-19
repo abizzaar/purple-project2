@@ -30,7 +30,7 @@ router.post('/newfood', (req, res) => {
   const post = new Post();
   // body parser lets us use the req.body
   const { author, description } = req.body;
-  if (!author || !text) {
+  if (!author || !description) {
     // we should throw an error. we can do this check on the front end
     return res.json({
       success: false,
@@ -38,7 +38,7 @@ router.post('/newfood', (req, res) => {
     });
   }
   post.author = author;
-  post.description = text;
+  post.description = description;
   post.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -65,7 +65,7 @@ router.post('/newlike', (req, res) => {
       post.likes.push(like);
       post.save(function(err) {
         if(err) return res.json({success: false,error: 'Error saving the comment'});
-            return res.json({ success: true, data: comments });
+        return res.json({ success: true});
       });
     });
   });
