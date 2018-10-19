@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Container } from 'semantic-ui-react'
 
 const lowerNavCss = {
   margin: "auto",
@@ -50,12 +50,14 @@ class AddMeal extends Component {
 
   render() {
     return (
-      <div>
-        <Button style={lowerNavCss} onClick={this.handleClick}>
-          Add your own meal!
-        </Button>
-        {this.showForm()}
-      </div>
+      <Container>
+        <div style={lowerNavCss}>
+          <Button onClick={this.handleClick}>
+            Add your own meal!
+          </Button>
+          {this.showForm()}
+        </div>
+      </Container>
     );
   }
 }
