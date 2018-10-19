@@ -28,19 +28,19 @@ class AddMeal extends Component {
         <Form>
           <Form.Field>
             <label>Name of Meal</label>
-            <input placeholder='Name of Meal' />
+            <input placeholder='Burritos!' />
           </Form.Field>
           <Form.Field>
-            <label>Meals Available</label>
-            <input placeholder='# of Meals Available' />
+            <label># of Meals Available</label>
+            <input placeholder='4' />
           </Form.Field>
           <Form.Field>
             <label>Ingredients</label>
-            <input placeholder='Ingredients' />
+            <input placeholder='Flour, Chicken, Corn, Beans, Lettuce, ...' />
           </Form.Field>
           <Form.Field>
             <label>Description</label>
-            <input placeholder='Description' />
+            <input placeholder='A lit ass burrito' />
           </Form.Field>
           <Button type='submit'>Submit</Button>
         </Form>
