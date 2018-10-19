@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'
 
 const lowerNavCss = {
@@ -6,14 +6,39 @@ const lowerNavCss = {
   marginTop: "2rem"
 }
 
-const AddMeal = (props) => {
+class AddMeal extends Component {
 
-  return (
-      <Button style={lowerNavCss}>
-        Add your own meal!
-      </Button>
-  );
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false
+    }
+    this.handleClick = this.handleClick.bind(this);
+    this.showForm = this.showForm.bind(this);
+  }
+
+  handleClick() {
+    this.setState({clicked: true});
+    console.log(this.state.clicked);
+  }
+
+  showForm() {
+    if (this.state.clicked) {
+      return (<div> Yay </div>);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Button style={lowerNavCss} onClick={this.handleClick}>
+          Add your own meal!
+        </Button>
+        {this.showForm()}
+      </div>
+    );
+  }
+}
 
 export default AddMeal;
 
