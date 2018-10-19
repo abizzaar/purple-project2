@@ -1,1 +1,2 @@
-# purple-project2
+# Compañero - A Food Sharing Mobile-Compatible Web Application
+
