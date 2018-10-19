@@ -64,7 +64,7 @@ class App extends Component {
     fetch('/api/newfood/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({author: this.state.author, description, number, name, id:100})
+      body: JSON.stringify({author, description, number, name, id:100})
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("holyy");
       else this.setState({ author: '', description: '', number: '', name: '' });
