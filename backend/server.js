@@ -45,3 +45,29 @@ router.post('/newfood', (req, res) => {
     return res.json({ success: true });
   });
 });
+
+router.post('/newlike', (req, res) => {
+  const post = new Post();
+  // body parser lets us use the req.body
+  const { id, author } = req.body;
+  if (!author || !id) {
+    // we should throw an error. we can do this check on the front end
+    return res.json({
+      success: false,
+      error: 'You must provide an author and id'
+    });
+  }
+  Post.findById(id,(err, post) => {
+    if (err) return res.json({ success: false, error: err });
+    var like = new Like();
+    like.author=author;
+    like.save(function(err) {
+
+      post.likes.push(like);
+      post.save(function(err) {
+        if(err) return res.json({success: false,error: 'Error saving the comment'});
+            return res.json({ success: true, data: comments });
+      });
+    });
+  });
+});
