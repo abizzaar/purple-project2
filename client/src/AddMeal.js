@@ -16,6 +16,7 @@ class AddMeal extends Component {
     }
     this.handleClick = this.handleClick.bind(this);
     this.showForm = this.showForm.bind(this);
+    this.showButtonText = this.showButtonText.bind(this);
   }
 
   handleClick() {
@@ -34,12 +35,20 @@ class AddMeal extends Component {
     }
   }
 
+  showButtonText() {
+    if (this.state.clicked) {
+      return ("Don't add your own meal :'(");
+    } else {
+      return ("Add your own meal!");
+    }
+  }
+
   render() {
     return (
       <Container>
         <div style={lowerNavCss}>
           <Button onClick={this.handleClick}>
-            Add your own meal!
+            {this.showButtonText()}
           </Button>
           {this.showForm()}
         </div>
