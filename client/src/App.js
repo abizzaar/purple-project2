@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Nav from './Nav.js'
-import Posts from './Posts.js'
+import Post from './Posts.js'
 import AddMeal from './AddMeal.js'
 
 class App extends Component {
@@ -34,6 +34,7 @@ class App extends Component {
   }
 
   loadPostsFromServer = () => {
+    console.log(this.state.data)
     // fetch returns a promise. If you are not familiar with promises, see
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
     fetch('/api/posts/')
@@ -73,6 +74,7 @@ class App extends Component {
   }
 
   like(id) {
+    console.log(id);
     console.log("hi")
     fetch('/api/newlike/', {
       method: 'POST',
@@ -90,7 +92,7 @@ class App extends Component {
       <div>
         <Nav />
         <AddMeal handleChange={this.handleChange} postToServer={this.postToServer}/>
-        <Posts like={this.like} posts={this.state.data}/>
+        <Post like={this.like} posts={this.state.data}/>
       </div>
     );
   }

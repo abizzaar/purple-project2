@@ -74,12 +74,19 @@ router.post('/newlike', (req, res) => {
   });
 });
 
+/* delete all posts */
 router.delete('/posts', (req, res) => {
   Post.remove({}, (error, comment) => {
     if (error) return res.json({ success: false, error });
     return res.json({ success: true });
   });
 });
+
+/*
+router.put('/posts/:postId'), (req, res) => {
+  const put
+}
+*/
 
 router.get('/posts', (req, res) => {
   Post.find((err, posts) => {
