@@ -3,9 +3,8 @@ import bodyParser from 'body-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import { getSecret } from './secrets';
-import Post from './models/schema';
-import Like from './models/schema';
-import fetch from 'isomorphic-fetch'
+import Post from './models/post';
+import Like from './models/like';
 
 // and create our instances
 const app = express();
