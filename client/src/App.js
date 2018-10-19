@@ -16,7 +16,7 @@ class App extends Component {
       number: '',
     };
   }
-
+/* 
   componentDidMount() {
     this.loadPostsFromServer();
     const { author, text, name, description, number, updateId } = this.state;
@@ -34,7 +34,7 @@ class App extends Component {
         if (!res.success) this.setState({ error: res.error });
         else this.setState({ data: res.data });
       });
-  }
+  } */
 
   render() {
     return (
