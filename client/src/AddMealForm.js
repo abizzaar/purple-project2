@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import { Button, Form} from 'semantic-ui-react'
 import { Z_BLOCK } from 'zlib';
 
-const buttonCSS = {
+const buttonCss = {
+  background: "rgba(0,0,0,0.7)",
+  color: "white",
   display: "block",
-  margin: "auto"
+  margin: "0.8rem auto"
+}
+
+const buttonAction = {
+  background: "#0D47A1",
+  color: "white",
+  display: "block",
+  margin: "0.8rem auto"
 }
 
 class AddMealForm extends Component {
@@ -26,22 +35,22 @@ class AddMealForm extends Component {
     return (
       <Form>
         <Form.Field>
-          <label>Author</label>
-          <input onChange={this.props.handleChange} name="author" placeholder='Burritos!' />
+          <label>Your name</label>
+          <input onChange={this.props.handleChange} name="author"/>
         </Form.Field>
         <Form.Field>
-          <label>Name</label>
-          <input onChange={this.props.handleChange} name="name" placeholder='4' />
+          <label>Your great dish</label>
+          <input onChange={this.props.handleChange} name="name"/>
         </Form.Field>
         <Form.Field>
-          <label># of Meals Available</label>
-          <input onChange={this.props.handleChange} name="number" placeholder='Flour, Chicken, Corn, Beans, Lettuce, ...' />
+          <label>For how many can you cook?</label>
+          <input onChange={this.props.handleChange} name="number"/>
         </Form.Field>
         <Form.Field>
-          <label>Description</label>
-          <input onChange={this.props.handleChange} name="description" placeholder='A lit ass burrito' />
+          <label>Describe your dish</label>
+          <input onChange={this.props.handleChange} name="description" />
         </Form.Field>
-        <Button style={buttonCSS} type='submit' onClick={this.handleClick}>Add my meal!</Button>
+        <Button style={buttonAction} type='submit' onClick={this.handleClick}>I PROMISE TO COOK</Button>
       </Form>
     );
   }

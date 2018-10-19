@@ -7,9 +7,18 @@ const lowerNavCss = {
   marginTop: "2rem"
 }
 
-const buttonCSS = {
+const buttonCss = {
+  background: "rgba(0,0,0,0.7)",
+  color: "white",
   display: "block",
-  margin: "auto"
+  margin: "0.8rem auto"
+}
+
+const buttonAction = {
+  background: "#0D47A1",
+  color: "white",
+  display: "block",
+  margin: "0.8rem auto"
 }
 
 class AddMeal extends Component {
@@ -44,7 +53,7 @@ class AddMeal extends Component {
     if (this.state.clicked) {
       return ("Close");
     } else {
-      return ("Add your own meal!");
+      return ("POST YOUR MEAL");
     }
   }
 
@@ -62,7 +71,7 @@ class AddMeal extends Component {
     return (
       <Container>
         <div style={lowerNavCss}>
-          <Button style={buttonCSS} onClick={this.handleClick}>
+          <Button style={(this.state.clicked ? buttonCss: buttonAction)} onClick={this.handleClick}>
             {this.showButtonText()}
           </Button>
           {this.showForm()}

@@ -8,6 +8,13 @@ const buttonCss = {
   margin: "0.8rem auto"
 }
 
+const buttonAction = {
+  background: "#0D47A1",
+  color: "white",
+  display: "block",
+  margin: "0.8rem auto"
+}
+
 const form = {
   margin: "0 1rem"
 }
@@ -47,7 +54,7 @@ class LikeName extends React.Component {
               <input onChange={this.props.handleChange} name="likerName"/>
             </Form.Field>
           </Form>
-          <Button style={buttonCss} onClick={this.handleClick} >I CONFIRM</Button>
+          <Button style={buttonAction} onClick={this.handleClick} >I CONFIRM</Button>
         </div>;
     }
 
@@ -55,7 +62,7 @@ class LikeName extends React.Component {
       <div>
         <button 
             onClick={() => {this.buttonClicked(this.props.post._id)}}
-            style={buttonCss} class="ui button">{(this.state.isOpen ? "NEVER MIND": "I WANT THIS")}
+            style={(this.state.isOpen ? buttonCss: buttonAction)} class="ui button">{(this.state.isOpen ? "NEVER MIND": "I WANT THIS")}
         </button>
         {container}
       </div>
