@@ -70,3 +70,10 @@ router.post('/newlike', (req, res) => {
     });
   });
 });
+
+router.get('/posts', (req, res) => {
+  Post.find((err, posts) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: posts });
+  });
+});
