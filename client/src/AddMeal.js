@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Container } from 'semantic-ui-react'
+import AddMealForm from './AddMealForm.js';
 
 const lowerNavCss = {
   margin: "auto",
@@ -18,32 +19,17 @@ class AddMeal extends Component {
   }
 
   handleClick() {
-    this.setState({clicked: true});
-    console.log(this.state.clicked);
+    if (this.state.clicked) {
+      this.setState({clicked: false});
+    } else {
+      this.setState({clicked: true});
+    }
   }
 
   showForm() {
     if (this.state.clicked) {
       return (
-        <Form>
-          <Form.Field>
-            <label>Name of Meal</label>
-            <input placeholder='Burritos!' />
-          </Form.Field>
-          <Form.Field>
-            <label># of Meals Available</label>
-            <input placeholder='4' />
-          </Form.Field>
-          <Form.Field>
-            <label>Ingredients</label>
-            <input placeholder='Flour, Chicken, Corn, Beans, Lettuce, ...' />
-          </Form.Field>
-          <Form.Field>
-            <label>Description</label>
-            <input placeholder='A lit ass burrito' />
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-        </Form>
+        <AddMealForm />
       );
     }
   }
