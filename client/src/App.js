@@ -4,6 +4,7 @@ import './App.css';
 import Nav from './Nav.js'
 import Posts from './Posts.js'
 import AddMeal from './AddMeal.js'
+import 'whatwg-fetch';
 
 class App extends Component {
   constructor() {
@@ -17,7 +18,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    this.loadPostsFromServer();
+    const { author, text, name, description, number, updateId } = this.state;
+    if (!this.pollInterval) {
+      this.pollInterval = setInterval(this.loadPostsFromServer, 2000);
+    }
   }
 
   loadPostsFromServer = () => {
