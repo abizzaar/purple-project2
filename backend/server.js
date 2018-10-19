@@ -30,7 +30,7 @@ router.post('/newfood', (req, res) => {
   const post = new Post();
   // body parser lets us use the req.body
   const { author, description, number, name, id } = req.body;
-  if (!author || !text || !number || !description) {
+  if (!author || !name || !number || !description) {
     // we should throw an error. we can do this check on the front end
     return res.json({
       success: false,

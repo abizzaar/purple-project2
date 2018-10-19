@@ -39,9 +39,9 @@ class AddMealForm extends Component {
         </Form.Field>
         <Form.Field>
           <label>Description</label>
-          <input onChange={this.props.handleChange} placeholder='A lit ass burrito' />
+          <input onChange={this.props.handleChange} name="description" placeholder='A lit ass burrito' />
         </Form.Field>
-        <Button style={buttonCSS} type='submit' name="description" onClick={this.handleClick}>Add my meal!</Button>
+        <Button style={buttonCSS} type='submit' onClick={this.handleClick}>Add my meal!</Button>
       </Form>
     );
   }

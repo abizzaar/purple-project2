@@ -7,7 +7,7 @@ const lowerNavCss = {
 }
 
 const buttonCss = {
-  backgroundColor: "rgba(0,0,0,0.7)",
+  background: "rgba(0,0,0,0.7)",
   color: "white"
 }
 
@@ -29,7 +29,7 @@ const Post = (props) => {
           {post.description}
         </div>
       </div>
-      <button style={buttonCss} class="ui button">I WANT THIS</button>
+      <button onClick={props.like(post.id)} style={buttonCss} class="ui button">I WANT THIS</button>
     </div>
     )
   }

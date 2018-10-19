@@ -14,6 +14,7 @@ class App extends Component {
       name: '',
       description: '',
       number: '',
+      id: 0
     };
     this.postToServer = this.postToServer.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -58,16 +59,27 @@ class App extends Component {
   }
 
   postToServer() {
-    const { author, name, number, description } = this.state;
-    const data = [...this.state.data, { author, name, description, number }];
+    const {author, name, number, description} = this.state;
+    const data = [...this.state.data, {author, name, description, number}];
     this.setState({ data });
     fetch('/api/newfood/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({author, description, number, name, id:100})
+      body: JSON.stringify({author, description, number:parseInt(number), name})
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("holyy");
-      else this.setState({ author: '', description: '', number: '', name: '' });
+      else this.setState({author: '',description: '',number: '',name: '' });
+    });
+  }
+
+  like(id) {
+    console.log("hi")
+    fetch('/api/newlike/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({author:'Abi', id})
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) console.log("holyy");
     });
   }
 
@@ -77,8 +89,8 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        <Posts posts={this.state.data}/>
         <AddMeal handleChange={this.handleChange} postToServer={this.postToServer}/>
+        <Posts like={this.like} posts={this.state.data}/>
       </div>
     );
   }
