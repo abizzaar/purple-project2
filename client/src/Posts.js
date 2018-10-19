@@ -6,6 +6,11 @@ const lowerNavCss = {
   marginTop: "2rem"
 }
 
+const buttonCss = {
+  backgroundColor: "rgba(0,0,0,0.7)",
+  color: "white"
+}
+
 
 const Post = (props) => {
   return (
@@ -13,12 +18,13 @@ const Post = (props) => {
       <div  style={lowerNavCss} class='ui card'>
         <div class='content'>
           <div class='header'>NAME OF FOOD</div>
-          <div class='meta'>MEALS AVAILABLE: 4</div>
-          <div class='meta'>INGREDIENTS: tomato, lettuce, blah </div>
+          <div class='meta'>&#8226; MEALS AVAILABLE: 4</div>
+          <div class='meta'>&#8226; INGREDIENTS: tomato, lettuce, blah </div>
           <div class='description'>
             This shit is mad tasty. Get in the mix you savage yeee
           </div>
         </div>
+        <button style={buttonCss} class="ui button">I WANT THIS</button>
       </div>
   </div>
   );
