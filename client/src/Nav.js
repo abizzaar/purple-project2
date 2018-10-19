@@ -7,6 +7,7 @@ const navCss = {
   padding: "1.5rem",
   backgroundColor: "black",
   color: "white",
+  textAlign: "center"
 }
 
 

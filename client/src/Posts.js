@@ -19,7 +19,6 @@ class Post extends Component {
     this.state = {
     }
   }
-  
 
   render() {
     let posts = [];
