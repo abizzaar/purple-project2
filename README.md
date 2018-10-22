@@ -26,7 +26,7 @@ Running the App:
 
 To run the app, navigate to your terminal and type: 
 ```
-$ cd purple-project1/
+$ cd purple-project2/
 $ yarn
 $ cd client
 $ yarn
