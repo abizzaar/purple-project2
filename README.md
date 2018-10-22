@@ -28,6 +28,9 @@ To run the app, navigate to your terminal and type:
 ```
 $ cd purple-project2/
 $ yarn
+$ cd backend
+$ yarn
+$ cd..
 $ cd client
 $ yarn
 $ cd ..
