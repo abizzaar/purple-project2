@@ -1,5 +1,3 @@
-
-// model/comment.js
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
@@ -11,7 +9,8 @@ const PostSchema = new Schema({
   description: String,
   number: Number,
   name: String,
-  likes: [ {type : mongoose.Schema.ObjectId, ref : 'Like'} ]
+  likes: [ {type : mongoose.Schema.ObjectId, ref : 'Like'} ],
+  comments: [ {type : mongoose.Schema.ObjectId, ref : 'Comment'} ]
 }, { timestamps: true });
 
 export default mongoose.model('Post', PostSchema);

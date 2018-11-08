@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import { getSecret } from './secrets';
 import Post from './models/post';
 import Like from './models/like';
-
+import Comment from './models/comment';
 // and create our instances
 const app = express();
 const router = express.Router();
@@ -67,6 +67,33 @@ router.post('/newlike', (req, res) => {
 
       post.likes.push(like);
       post.number=post.number-1;
+      post.save(function(err) {
+        if(err) return res.json({success: false,error: 'Error saving the comment'});
+        return res.json({ success: true});
+      });
+    });
+  });
+});
+
+router.post('/newcomment', (req, res) => {
+  const post = new Post();
+  // body parser lets us use the req.body
+  const { id, author, text } = req.body;
+  if (!author || !id|| !text) {
+    // we should throw an error. we can do this check on the front end
+    return res.json({
+      success: false,
+      error: 'You must provide an author and id and text'
+    });
+  }
+  Post.findById(id,(err, post) => {
+    if (err) return res.json({ success: false, error: err });
+    var comment = new Comment();
+    comment.author=author;
+    comment.text=text;
+    comment.save(function(err) {
+
+      post.comments.push(comment);
       post.save(function(err) {
         if(err) return res.json({success: false,error: 'Error saving the comment'});
         return res.json({ success: true});
