@@ -66,6 +66,7 @@ router.post('/newlike', (req, res) => {
     like.save(function(err) {
 
       post.likes.push(like);
+      post.number=post.number-1;
       post.save(function(err) {
         if(err) return res.json({success: false,error: 'Error saving the comment'});
         return res.json({ success: true});
