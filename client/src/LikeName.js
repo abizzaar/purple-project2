@@ -26,20 +26,25 @@ class LikeName extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.state = {isOpen: false}
-    this.buttonClicked = this.buttonClicked.bind(this);;
+    this.buttonClicked = this.buttonClicked.bind(this);
+    this.confirmButtonClicked = this.confirmButtonClicked.bind(this);
   }
 
   buttonClicked(id) {
-    this.props.like(id);
     this.handleClick();
   }
 
   handleClick() {
-    console.log("switch")
+    console.log("switch");
     if (this.state.isOpen) {
       this.setState({isOpen: false});
     }
     else this.setState({isOpen: true});
+  }
+
+  confirmButtonClicked() {
+    this.handleClick();
+    this.props.like(this.props.post._id);
   }
 
   render() {
@@ -54,7 +59,7 @@ class LikeName extends React.Component {
               <input onChange={this.props.handleChange} name="likerName"/>
             </Form.Field>
           </Form>
-          <Button style={buttonAction} onClick={this.handleClick} >I CONFIRM</Button>
+          <Button style={buttonAction} onClick={this.confirmButtonClicked} >I CONFIRM</Button>
         </div>;
     }
 
