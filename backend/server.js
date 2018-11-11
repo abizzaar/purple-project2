@@ -6,6 +6,7 @@ import { getSecret } from './secrets';
 import Post from './models/post';
 import Like from './models/like';
 import Comment from './models/comment';
+import MealRequest from './models/request';
 // and create our instances
 const app = express();
 const router = express.Router();
@@ -47,6 +48,29 @@ router.post('/newfood', (req, res) => {
     return res.json({ success: true });
   });
 });
+
+router.post('/newmealrequest', (req, res) => {
+  const mealReq = new MealRequest();
+  // body parser lets us use the req.body
+  const { author, description, number, name, id } = req.body;
+  if (!author || !name || !number || !description) {
+    // we should throw an error. we can do this check on the front end
+    return res.json({
+      success: false,
+      error: 'You must provide an author, desc, name,number'
+    });
+  }
+  mealReq.author = author;
+  mealReq.description = description;
+  mealReq.number=number;
+  mealReq.name=name;
+  mealReq.id = id;
+  mealReq.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
 
 router.post('/newlike', (req, res) => {
   const post = new Post();
@@ -118,6 +142,13 @@ router.put('/posts/:postId'), (req, res) => {
 
 router.get('/posts', (req, res) => {
   Post.find((err, posts) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: posts });
+  });
+});
+
+router.get('/mealrequests', (req, res) => {
+  MealRequest.find((err, posts) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: posts });
   });
