@@ -4,7 +4,36 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 class GMap extends Component {
   constructor() {
     super();
+    this.state = {
+      userlocation: { lat: 42.058631, lng: -87.675635 },
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
+    };
   }
+
+  onMapClicked = props => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      });
+    }
+  };
+
+  onMarkerClick = (props, marker, e) => {
+    if (this.state.showingInfoWindow === false) {
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true
+      });
+    } else {
+      this.setState({
+        showingInfoWindow: false
+      });
+    }
+  };
   render() {
     return (
       <div>
@@ -12,11 +41,20 @@ class GMap extends Component {
         <Map
           google={this.props.google}
           zoom={14}
+          initialCenter={this.state.userlocation}
+          onClick={this.onMapClicked}
           //visible={this.state.mapvisibility}
         >
           <Marker onClick={this.onMarkerClick} name={"Current location"} />
 
-          <InfoWindow onClose={this.onInfoWindowClose} />
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );

@@ -9,6 +9,7 @@ const PostSchema = new Schema({
   description: String,
   number: Number,
   name: String,
+  location: String,
   likes: [ {type : mongoose.Schema.ObjectId, ref : 'Like'} ],
   comments: [ {type : mongoose.Schema.ObjectId, ref : 'Comment'} ]
 }, { timestamps: true });
