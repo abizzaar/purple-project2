@@ -77,7 +77,7 @@ class AddMealForm extends Component {
         </Form.Field>
         <Form.Field>
           <label>Location</label>
-          <Checkbox label='Use my current location' onChange={this.checkedCurrentLocation}/>
+          <Button type='submit' onClick={this.checkedCurrentLocation}>Use my current location</Button>
           <div className={"m-1"}>
             <input onChange={this.props.handleChange} name="location"/>
           </div>
