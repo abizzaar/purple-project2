@@ -50,8 +50,7 @@ class Meals extends Component {
     console.log(location);
     if (location) {
       location.getCurrentPosition((position) => {
-	console.log(position.coords.latitude);
-	console.log(position.coords.longitude);
+	//console.log(position.coords.longitude);
 	var locationStr="";
         locationStr=locationStr.concat(position.coords.latitude,",",position.coords.longitude);
 	this.setState({location: locationStr});
