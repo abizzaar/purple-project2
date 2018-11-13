@@ -63,18 +63,17 @@ class AddMealForm extends Component {
       location.getCurrentPosition((position) => {
         var locationStr="";
         locationStr=locationStr.concat(position.coords.latitude,",",position.coords.longitude);
-        this.setState({lat: position.coords.latitude, long: position.coords.longitude}, () => {
-          Geocode.fromLatLng(this.state.lat, this.state.long).then(
-            response => {
-              const address = response.results[0].formatted_address;
-              console.log(address);
-              // This is where we show to the user
-            }, error => {
-              console.error(error);
-            }
-          );
-        });
+        this.setState({lat: position.coords.latitude, long: position.coords.longitude});
         this.setState({location: locationStr});
+        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+          response => {
+            const address = response.results[0].formatted_address;
+            console.log(address);
+            // This is where we show to the user
+          }, error => {
+            console.error(error);
+          }
+        );
       }, (error) => {
           this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' });
       })
