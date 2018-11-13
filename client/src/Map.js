@@ -22,17 +22,11 @@ class GMap extends Component {
   };
 
   onMarkerClick = (props, marker, e) => {
-    if (this.state.showingInfoWindow === false) {
-      this.setState({
-        selectedPlace: props,
-        activeMarker: marker,
-        showingInfoWindow: true
-      });
-    } else {
-      this.setState({
-        showingInfoWindow: false
-      });
-    }
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
   };
   render() {
     return (
@@ -45,7 +39,16 @@ class GMap extends Component {
           onClick={this.onMapClicked}
           //visible={this.state.mapvisibility}
         >
-          <Marker onClick={this.onMarkerClick} name={"Current location"} />
+          <Marker
+            onClick={this.onMarkerClick}
+            name={"Current location"}
+            position={{ lat: 42.058631, lng: -87.675635 }}
+          />
+          <Marker
+            onClick={this.onMarkerClick}
+            name={"Current location22"}
+            position={{ lat: 42.05, lng: -87.67 }}
+          />
 
           <InfoWindow
             marker={this.state.activeMarker}
