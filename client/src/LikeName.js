@@ -25,7 +25,12 @@ class LikeName extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    this.state = {isOpen: false}
+    this.state = {
+      isOpen: false,
+      liker: ''
+    }
+    this.likerInput = React.createRef();
+
     this.buttonClicked = this.buttonClicked.bind(this);
     this.confirmButtonClicked = this.confirmButtonClicked.bind(this);
   }
@@ -44,7 +49,7 @@ class LikeName extends React.Component {
 
   confirmButtonClicked() {
     this.handleClick();
-    this.props.like(this.props.post._id);
+    this.props.like(this.likerInput.current.value, this.props.post._id);
   }
 
   render() {
@@ -56,7 +61,7 @@ class LikeName extends React.Component {
           <Form style={form}>
             <Form.Field>
               <label>Name</label>
-              <input onChange={this.props.handleChange} name="likerName"/>
+              <input ref={this.likerInput} onChange={this.props.handleChange} name="likerName"/>
             </Form.Field>
           </Form>
           <Button style={buttonAction} onClick={this.confirmButtonClicked} >I CONFIRM</Button>
@@ -67,7 +72,8 @@ class LikeName extends React.Component {
       <div>
         <button 
             onClick={() => {this.buttonClicked(this.props.post._id)}}
-            style={(this.state.isOpen ? buttonCss: buttonAction)} className="ui button">{(this.state.isOpen ? "NEVER MIND": "I WANT THIS")}
+            style={(this.state.isOpen ? buttonCss: buttonAction)} 
+            className="ui button">{(this.state.isOpen ? "NEVER MIND": "I WANT THIS")}
         </button>
         {container}
       </div>

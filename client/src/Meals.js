@@ -72,13 +72,12 @@ class Meals extends Component {
     });
   }
 
-  like(id) {
-    console.log(id);
-    console.log("hi")
+  like(liker, id) {
     fetch('/api/newlike/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({author:'Abi', id})
+      
+      body: JSON.stringify({author: liker, id})
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("holyy");
     });
