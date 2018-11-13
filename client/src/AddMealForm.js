@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form} from 'semantic-ui-react'
+import { Button, Form, Checkbox} from 'semantic-ui-react'
 import { Z_BLOCK } from 'zlib';
-
-const buttonCss = {
-  background: "rgba(0,0,0,0.7)",
-  color: "white",
-  display: "block",
-  margin: "0.8rem auto"
-}
 
 const buttonAction = {
   background: "#0D47A1",
@@ -20,14 +13,46 @@ class AddMealForm extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      useCurrentLocation: false
+    };
     this.handleClick = this.handleClick.bind(this);
+    this.checkedCurrentLocation = this.checkedCurrentLocation.bind(this);
   }
 
   handleClick(e) {
     // we could call a function passed as a prop that will close the form once it's submitted
     // need to make request to backend api
-    // console.log("fuck me up");
-    this.props.postToServer(e)
+    this.props.postToServer(e);
+    console.log(this.state.useCurrentLocation);
+  }
+
+  checkedCurrentLocation() {
+    if (this.state.useCurrentLocation) {
+      this.setState({ useCurrentLocation: false });
+    } else {
+      this.setState({ useCurrentLocation: true });
+      this.getMyLocation();
+    }
+  }
+
+  getMyLocation() {
+    const location = window.navigator && window.navigator.geolocation
+    if (location) {
+      location.getCurrentPosition((position) => {
+      var locationStr="";
+      locationStr=locationStr.concat(position.coords.latitude,",",position.coords.longitude);
+      this.setState({location: locationStr});
+      console.log(locationStr);
+        //this.setState({
+        //  latitude: position.coords.latitude,
+        //  longitude: position.coords.longitude,
+        //})
+      }, (error) => {
+        this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+      })
+    }
+
   }
 
 
@@ -49,6 +74,13 @@ class AddMealForm extends Component {
         <Form.Field>
           <label>Describe your dish</label>
           <input onChange={this.props.handleChange} name="description" />
+        </Form.Field>
+        <Form.Field>
+          <label>Location</label>
+          <Checkbox label='Use my current location' onChange={this.checkedCurrentLocation}/>
+          <div className={"m-1"}>
+            <input onChange={this.props.handleChange} name="location"/>
+          </div>
         </Form.Field>
         <Button style={buttonAction} type='submit' onClick={this.handleClick}>I PROMISE TO COOK</Button>
       </Form>

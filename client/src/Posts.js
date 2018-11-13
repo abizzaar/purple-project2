@@ -22,14 +22,14 @@ class Post extends Component {
     for (let post of this.props.posts) {
       if (post.number > 0) {
         posts.push(
-          <div style={lowerNavCss} class="ui card">
-            <div class="content">
-              <div style={header} class="header">
+          <div style={lowerNavCss} className="ui card">
+            <div className="content">
+              <div style={header} className="header">
                 {post.name}
               </div>
-              <div class="meta">&#8226; by {post.author} </div>
-              <div class="meta">&#8226; MEALS AVAILABLE: {post.number}</div>
-              <div class="description">{post.description}</div>
+              <div className="meta">&#8226; by {post.author} </div>
+              <div className="meta">&#8226; MEALS AVAILABLE: {post.number}</div>
+              <div className="description">{post.description}</div>
             </div>
             <LikeName like={this.props.like} post={post} />
           </div>

@@ -22,7 +22,6 @@ class Meals extends Component {
 
   componentDidMount() {
     this.loadPostsFromServer();
-    this.getMyLocation();
     const { author, text, name, description, number, updateId } = this.state;
     if (!this.pollInterval) {
       this.pollInterval = setInterval(this.loadPostsFromServer, 2000);
@@ -44,28 +43,7 @@ class Meals extends Component {
         else this.setState({ data: res.data });
       });
   }
-  getMyLocation() {
-    console.log("Loc");
-    const location = window.navigator && window.navigator.geolocation
-    console.log(location);
-    if (location) {
-      location.getCurrentPosition((position) => {
-	console.log(position.coords.latitude);
-	console.log(position.coords.longitude);
-	var locationStr="";
-        locationStr=locationStr.concat(position.coords.latitude,",",position.coords.longitude);
-	this.setState({location: locationStr});
-	console.log(locationStr);
-        //this.setState({
-        //  latitude: position.coords.latitude,
-        //  longitude: position.coords.longitude,
-        //})
-      }, (error) => {
-        this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-      })
-    }
-
-  }
+  
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }

@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.m-1 { margin-top: 1rem; }
+.m-2 { margin-top: 2rem; }
+.m-3 { margin-top: 3rem; }
+.m-4 { margin-top: 4rem; }
+.m-5 { margin-top: 5rem; }
+.m-6 { margin-top: 6rem; }
+.m-7 { margin-top: 7rem; }
+.m-8 { margin-top: 8rem; }
+.m-9 { margin-top: 9rem; }
+.m-10 { margin-top: 10rem; }
+.m-11 { margin-top: 11rem; }
