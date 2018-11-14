@@ -18,11 +18,12 @@ const header = {
 const postStyle = {
   display: "flex",
   flexDirection: "row",
-  alignContent: "center",
+  alignItems: "flex-start",
   justifyContent: "space-around",
   flexWrap: "wrap",
-  marginLeft: "100px",
-  marginRight: "100px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  maxWidth: "1300px"
 };
 
 class Post extends Component {
