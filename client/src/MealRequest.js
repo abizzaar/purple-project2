@@ -44,27 +44,6 @@ class MealRequest extends Component {
         else this.setState({ data: res.data });
       });
   }
-  getMyLocation() {
-    console.log("Loc");
-    const location = window.navigator && window.navigator.geolocation
-    console.log(location);
-    if (location) {
-      location.getCurrentPosition((position) => {
-	//console.log(position.coords.longitude);
-	var locationStr="";
-        locationStr=locationStr.concat(position.coords.latitude,",",position.coords.longitude);
-	this.setState({location: locationStr});
-	console.log(locationStr);
-        //this.setState({
-        //  latitude: position.coords.latitude,
-        //  longitude: position.coords.longitude,
-        //})
-      }, (error) => {
-        this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-      })
-    }
-
-  }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -92,9 +71,17 @@ class MealRequest extends Component {
       else this.setState({author: '',description: '',number: '',name: '' });
     });
   }
-  like(id){
-	console.log("Not fucking implemented");
-  }
+  like(liker, id) {
+    fetch('/api/assigntochef/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+
+      body: JSON.stringify({author: liker, id})
+      }).then(res => res.json()).then((res) => {
+      if (!res.success) console.log("holyy");
+    });
+  }  
+
   render() {
     return (
       <div>

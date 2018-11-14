@@ -51,6 +51,35 @@ router.post('/newfood', (req, res) => {
   });
 });
 
+router.post('/assigntochef', (req, res) => {
+  const post = new Post();
+  // body parser lets us use the req.body
+  const { id, author } = req.body;
+  if (!author || !id) {
+    // we should throw an error. we can do this check on the front end
+    return res.json({
+      success: false,
+      error: 'You must provide an author and id'
+    });
+  }
+  MealRequest.findById(id,(err, post) => {
+    if (err) return res.json({ success: false, error: err });
+    const newPost=new Post();
+    newPost.author = author;
+    newPost.description = post.description;
+    newPost.number= post.number;
+    newPost.name=post.name;
+    newPost.id = post.id;
+    newPost.save(err => {
+    if (err){
+	 return res.json({ success: false, error: err });
+    }
+    MealRequest.findById(id).remove().exec();
+    return res.json({ success: true });
+    });
+});
+});
+
 router.post('/newmealrequest', (req, res) => {
   const mealReq = new MealRequest();
   // body parser lets us use the req.body
