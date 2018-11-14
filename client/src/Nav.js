@@ -32,9 +32,9 @@ const Nav = () => (
     <div style={navStyle}>
       <ul><NavLink to='/' style={linkStyle}>Home</NavLink></ul>
       <ul><NavLink to='/meals' style={linkStyle}>Meals</NavLink></ul>
-      <ul><NavLink to='/recipes' style={linkStyle}>Recipes</NavLink></ul>
-      <ul><NavLink to='/map' style={linkStyle}>Map</NavLink></ul>
       <ul><NavLink to='/mealrequests' style={linkStyle}>Meal Requests</NavLink></ul>
+      <ul><NavLink to='/map' style={linkStyle}>Map</NavLink></ul>
+      <ul><NavLink to='/recipes' style={linkStyle}>Recipes</NavLink></ul>
     </div>
   </nav>
 );
