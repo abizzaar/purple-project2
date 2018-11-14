@@ -8,6 +8,7 @@ const lowerNavCss = {
   marginTop: "3rem",
   marginLeft: "8px",
   marginRight: "8px",
+  fontSize: "18px"
 };
 
 const header = {
@@ -20,6 +21,8 @@ const postStyle = {
   alignContent: "center",
   justifyContent: "space-around",
   flexWrap: "wrap",
+  marginLeft: "100px",
+  marginRight: "100px",
 };
 
 class Post extends Component {
