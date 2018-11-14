@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom'
 
+const navStyle = {
+  display: "flex",
+  flexDirection: "row"
+}
+
 const Navigation = () => (
   <nav>
-    <ul>
-      <li><NavLink to='/'>Home</NavLink></li>
-      <li><NavLink to='/meals'>Meals</NavLink></li>
-      <li><NavLink to='/recipes'>Recipes</NavLink></li>
-      <li><NavLink to='/map'>Map</NavLink></li>
-      <li><NavLink to='/mealrequests'>Meal Requests</NavLink></li>
-    </ul>
+    <div style={navStyle}>
+      <ul><NavLink to='/'>Home</NavLink></ul>
+      <ul><NavLink to='/meals'>Meals</NavLink></ul>
+      <ul><NavLink to='/recipes'>Recipes</NavLink></ul>
+      <ul><NavLink to='/map'>Map</NavLink></ul>
+      <ul><NavLink to='/mealrequests'>Meal Requests</NavLink></ul>
+    </div>
   </nav>
 );
 

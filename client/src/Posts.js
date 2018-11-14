@@ -3,12 +3,23 @@ import { Card } from "semantic-ui-react";
 import LikeName from "./LikeName.js";
 
 const lowerNavCss = {
-  margin: "auto",
-  marginTop: "2rem"
+  display: "flex",
+  textAlign: "center",
+  marginTop: "3rem",
+  marginLeft: "8px",
+  marginRight: "8px",
 };
 
 const header = {
   textTransform: "uppercase"
+};
+
+const postStyle = {
+  display: "flex",
+  flexDirection: "row",
+  alignContent: "center",
+  justifyContent: "space-around",
+  flexWrap: "wrap",
 };
 
 class Post extends Component {
@@ -36,7 +47,9 @@ class Post extends Component {
         );
       }
     }
-    return <div>{posts}</div>;
+    return (
+      <div style={postStyle}>{posts}</div>
+    )
   }
 }
 

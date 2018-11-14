@@ -43,7 +43,7 @@ class Meals extends Component {
         else this.setState({ data: res.data });
       });
   }
-  
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -76,7 +76,7 @@ class Meals extends Component {
     fetch('/api/newlike/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      
+
       body: JSON.stringify({author: liker, id})
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("holyy");
