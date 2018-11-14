@@ -33,7 +33,6 @@ class GMap extends Component {
     return (
       <div>
         <Nav />
-        <div>A MAP IS AN ABSTRACTION OF THE WORLD. NOT THE WORLD ITSELF.</div>
         <Map
           google={this.props.google}
           zoom={14}

@@ -7,6 +7,7 @@ const navStyle = {
   flexDirection: "row",
   justifyContent: "space-around",
   backgroundColor: "rgb(13, 71, 161)",
+  paddingRight: "40px"
 }
 
 const navCss = {
@@ -18,6 +19,7 @@ const navCss = {
   textAlign: "center",
   display: "flex",
   flexDirection: "row",
+  alignItems: "center",
   justifyContent: "space-around"
 }
 
@@ -26,9 +28,18 @@ const linkStyle = {
   fontWeight: "bold"
 }
 
+// const imgStyle = {
+//   width: "25px",
+//   height: "20px"
+// }
+
+/*<img style={imgStyle} src={"/white-companero-logo-2.png"} />*/
+
 const Nav = () => (
   <nav>
-    <div><h2 style={navCss}>compañero</h2></div>
+    <div style={navCss}>
+      <h2>compañero</h2>
+    </div>
     <div style={navStyle}>
       <ul><NavLink to='/' style={linkStyle}>Home</NavLink></ul>
       <ul><NavLink to='/meals' style={linkStyle}>Meals</NavLink></ul>
