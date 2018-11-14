@@ -41,8 +41,8 @@ class Post extends Component {
               <div style={header} className="header">
                 {post.name}
               </div>
-              <div className="meta">&#8226; by {post.author} </div>
-              <div className="meta">&#8226; MEALS AVAILABLE: {post.number}</div>
+              <div className="meta">Chef: {post.author} </div>
+              <div className="meta">Meals Left: {post.number}</div>
               <div className="description">{post.description}</div>
             </div>
             <LikeName like={this.props.like} post={post} />

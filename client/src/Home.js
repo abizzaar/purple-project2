@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Nav from './Nav.js';
 
-class Recipes extends Component {
+class Home extends Component {
   constructor() {
     super();
   }
@@ -10,10 +10,10 @@ class Recipes extends Component {
     return (
       <div>
         <Nav />
-        <div>THIS IS THE RECIPES PAGE</div>
+        <img src={"./updated-logo-2.png"} />     
       </div>
     )
   }
 }
 
-export default Recipes;
+export default Home;

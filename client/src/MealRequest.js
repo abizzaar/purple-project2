@@ -80,7 +80,7 @@ class MealRequest extends Component {
       }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("holyy");
     });
-  }  
+  }
 
   render() {
     return (
