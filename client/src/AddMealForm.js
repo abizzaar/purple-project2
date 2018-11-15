@@ -81,7 +81,6 @@ class AddMealForm extends Component {
   }
 
   handleLocationChange(e) {
-    console.log(e.target.value);
     this.setState({ locationVal: e.target.value });
     this.props.handleChange(e);
   }
