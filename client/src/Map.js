@@ -37,6 +37,7 @@ class GMap extends Component {
           zoom={14}
           initialCenter={this.state.userlocation}
           onClick={this.onMapClicked}
+          style={{ width: "100%", height: "100%" }}
           //visible={this.state.mapvisibility}
         >
           <Marker
