@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Checkbox} from 'semantic-ui-react'
+import { Button, Form, Checkbox, Loader} from 'semantic-ui-react'
 import { Z_BLOCK } from 'zlib';
 import Geocode from "react-geocode";
 
@@ -14,17 +14,6 @@ const buttonAction = {
     Geocode.setApiKey("AIzaSyCSrslYFVpdzEkb1FMefL5Q8EYIauaMiIU");
     // Enable or disable logs. Its optional.
     Geocode.enableDebug();
-
-// Get address from latidude & longitude.
-  // Geocode.fromLatLng("48.8583701", "2.2922926").then(
-  //   response => {
-  //     const address = response.results[0].formatted_address;
-  //     console.log(address);
-  //   },
-  //   error => {
-  //     console.error(error);
-  //   }
-  // );
 
   // // Get latidude & longitude from address.
   // Geocode.fromAddress("Eiffel Tower").then(
@@ -42,77 +31,100 @@ class AddMealForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentLocation: '',
       location: '',
-      lat: 0,
+      author: '',
+      name: '',
+      description: '',
+      number: '',
       long: 0,
-      locationVal: ''
+      lat: 0
     };
     this.handleClick = this.handleClick.bind(this);
     this.clickedCurrentLocation = this.clickedCurrentLocation.bind(this);
-    this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(e) {
     // we could call a function passed as a prop that will close the form once it's submitted
     // need to make request to backend api
-    this.props.postToServer(e);
+    Geocode.fromAddress(this.state.location).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        this.setState({
+          long: lng,
+          lat: lat
+        }, () => {
+          this.props.updateValues(this.state);
+
+        });
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   clickedCurrentLocation() {
-    const location = window.navigator && window.navigator.geolocation
-    if (location) {
-      location.getCurrentPosition((position) => {
-        var locationStr="";
-        locationStr=locationStr.concat(position.coords.latitude,",",position.coords.longitude);
-        this.setState({lat: position.coords.latitude, long: position.coords.longitude});
-        this.setState({location: locationStr});
-        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
-          response => {
-            const address = response.results[0].formatted_address;
-            this.setState({locationVal: address});
-          }, error => {
-            console.error(error);
-          }
-        );
-      }, (error) => {
-          this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' });
-      })
+    if (this.state.currentLocation !== '') {
+      this.setState({ 
+        location: this.state.currentLocation
+      });
+    } else {
+      this.setState({ location: "... getting your current address!" });
+      const location = window.navigator && window.navigator.geolocation
+      if (location) {
+        location.getCurrentPosition((position) => {
+          Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+            response => {
+              const address = response.results[0].formatted_address;
+              this.setState({ location: address });
+              this.setState({ currentLocation: address });
+            }, error => {
+              console.error(error);
+            }
+          );
+        }, (error) => {
+            this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' });
+        })
+      }
     }
   }
 
-  handleLocationChange(e) {
-    this.setState({ locationVal: e.target.value });
-    this.props.handleChange(e);
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
+
+  // could use <Loader /> when we are waiting for the address
 
   render() {
     return (
       <Form>
         <Form.Field>
           <label>Your name</label>
-          <input onChange={this.props.handleChange} name="author"/>
+          <input onChange={this.handleChange} name="author"/>
         </Form.Field>
         <Form.Field>
           <label>Your great dish</label>
-          <input onChange={this.props.handleChange} name="name"/>
+          <input onChange={this.handleChange} name="name"/>
         </Form.Field>
         <Form.Field>
           <label>For how many can you cook?</label>
-          <input onChange={this.props.handleChange} name="number"/>
+          <input onChange={this.handleChange} name="number"/>
         </Form.Field>
         <Form.Field>
           <label>Describe your dish</label>
-          <input onChange={this.props.handleChange} name="description" />
+          <input onChange={this.handleChange} name="description" />
         </Form.Field>
         <Form.Field>
           <label>Choose from your uploaded images</label>
-          <radio onChange={this.props.handleChange} name="uploadedImages" />
+          <radio onChange={this.handleChange} name="uploadedImages" />
         </Form.Field>
         <Form.Field>
           <label>Location</label>
           <Button type='submit' onClick={this.clickedCurrentLocation}>Use my current location</Button>
           <div className={"m-1"}>
-            <input onChange={this.handleLocationChange} name="location" value={this.state.locationVal}/>
+            <input onChange={this.handleChange} name="location" value={this.state.location}/>
           </div>
         </Form.Field>
         <Button style={buttonAction} type='submit' onClick={this.handleClick}>I PROMISE TO COOK</Button>

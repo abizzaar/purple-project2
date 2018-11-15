@@ -31,6 +31,7 @@ class AddMeal extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.showForm = this.showForm.bind(this);
     this.showButtonText = this.showButtonText.bind(this);
+    this.updateValues = this.updateValues.bind(this);
   }
 
   handleClick(e) {
@@ -44,7 +45,7 @@ class AddMeal extends Component {
   showForm() {
     if (this.state.clicked) {
       return (
-        <AddMealForm handleChange={this.props.handleChange} postToServer={this.postToServer}/>
+        <AddMealForm updateValues={this.updateValues}/>
       );
     }
   }
@@ -57,10 +58,9 @@ class AddMeal extends Component {
     }
   }
 
-  postToServer = (e) => {
-    this.props.postToServer(e);
+  updateValues(obj) {
+    this.props.updateValues(obj);
     this.handleClick();
-    console.log(e.target.value);
   }
 
   handleChange(e) {
