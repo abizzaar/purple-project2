@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Card } from "semantic-ui-react";
 import LikeName from "./LikeName.js";
-
+import { Button, Header, Icon, Modal, Card } from 'semantic-ui-react'
 const lowerNavCss = {
   display: "flex",
   textAlign: "center",
@@ -19,7 +18,7 @@ const postStyle = {
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-start",
-  justifyContent: "space-around",
+  justifyContent: "flex-start",
   flexWrap: "wrap",
   marginLeft: "auto",
   marginRight: "auto",
@@ -52,7 +51,9 @@ class Post extends Component {
       }
     }
     return (
-      <div style={postStyle}>{posts}</div>
+      <div>
+        <div style={postStyle}>{posts}</div>
+      </div>
     )
   }
 }

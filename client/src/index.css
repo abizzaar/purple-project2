@@ -13,14 +13,24 @@ code {
     monospace;
 }
 
-.m-1 { margin-top: 1rem; }
-.m-2 { margin-top: 2rem; }
+.m-1 { margin-top: 1rem !important; }
+.m-2 { margin-top: 2rem !important; }
 .m-3 { margin-top: 3rem; }
 .m-4 { margin-top: 4rem; }
 .m-5 { margin-top: 5rem; }
-.m-6 { margin-top: 6rem; }
+.m-6 { margin-top: 6rem !important; }
 .m-7 { margin-top: 7rem; }
 .m-8 { margin-top: 8rem; }
 .m-9 { margin-top: 9rem; }
 .m-10 { margin-top: 10rem; }
 .m-11 { margin-top: 11rem; }
+
+.ui.dimmer {
+  background-color: rgba(0,0,0,.6) !important;
+}
+
+.maxWidth {
+  max-width: 1300px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

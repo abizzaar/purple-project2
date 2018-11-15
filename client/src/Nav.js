@@ -6,7 +6,7 @@ const navStyle = {
   color: "white",
   flexDirection: "row",
   justifyContent: "space-around",
-  backgroundColor: "rgb(13, 71, 161)",
+  backgroundColor: "rgba(0,0,0,0.6)",
   paddingRight: "40px"
 }
 

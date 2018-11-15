@@ -3,22 +3,25 @@ import { Button, Form, Container } from 'semantic-ui-react'
 import AddMealForm from './AddMealForm.js';
 
 const lowerNavCss = {
-  margin: "auto",
-  marginTop: "2rem"
+  marginLeft: "1rem"
 }
 
 const buttonCss = {
   background: "rgba(0,0,0,0.7)",
   color: "white",
   display: "block",
-  margin: "0.8rem auto"
+  margin: "2rem auto 1rem auto",
 }
 
 const buttonAction = {
   background: "#0D47A1",
   color: "white",
   display: "block",
-  margin: "0.8rem auto"
+  margin: "2rem auto 1rem auto",
+}
+
+const container = {
+  
 }
 
 class AddMeal extends Component {
@@ -69,14 +72,14 @@ class AddMeal extends Component {
 
   render() {
     return (
-      <Container>
+      <div className="maxWidth" >
         <div style={lowerNavCss}>
           <Button style={(this.state.clicked ? buttonCss: buttonAction)} onClick={this.handleClick}>
             {this.showButtonText()}
           </Button>
           {this.showForm()}
         </div>
-      </Container>
+      </div>
     );
   }
 }

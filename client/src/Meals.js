@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import Nav from './Nav.js'
 import Post from './Posts.js'
 import AddMeal from './AddMeal.js'
-
+import { Divider } from 'semantic-ui-react'
 class Meals extends Component {
   constructor() {
     super();
@@ -89,7 +89,7 @@ class Meals extends Component {
     return (
       <div>
         <Nav />
-        <AddMeal handleChange={this.handleChange} postToServer={this.postToServer}/>
+        <AddMeal className="m-6" handleChange={this.handleChange} postToServer={this.postToServer}/>
         <Post like={this.like} posts={this.state.data}/>
       </div>
     );

@@ -15,7 +15,7 @@ const imgContainer = {
 
 const italicText = {
   fontStyle: "italic",
-  fontSize: "20px",
+  fontSize: "1.2rem",
   color: "grey"
 }
 

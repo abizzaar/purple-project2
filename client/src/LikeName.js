@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Form} from 'semantic-ui-react'
+import { Button, Header, Icon, Modal, Form, Card } from 'semantic-ui-react'
+import Popup from './Popup.js'
 
 const buttonCss = {
   background: "rgba(0,0,0,0.7)",
@@ -27,13 +28,20 @@ class LikeName extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false,
-      liker: ''
+      liker: '',
+      modalOpen: false 
     }
+    this.popupRef = React.createRef();
+
     this.likerInput = React.createRef();
 
     this.buttonClicked = this.buttonClicked.bind(this);
     this.confirmButtonClicked = this.confirmButtonClicked.bind(this);
   }
+
+  handleOpen = () => this.setState({ modalOpen: true })
+
+  handleClose = () => this.setState({ modalOpen: false })
 
   buttonClicked(id) {
     this.handleClick();
@@ -50,6 +58,7 @@ class LikeName extends React.Component {
   confirmButtonClicked() {
     this.handleClick();
     this.props.like(this.likerInput.current.value, this.props.post._id);
+    this.popupRef.current.handleOpen();
   }
 
   render() {
@@ -64,6 +73,7 @@ class LikeName extends React.Component {
               <input ref={this.likerInput} onChange={this.props.handleChange} name="likerName"/>
             </Form.Field>
           </Form>
+          
           <Button style={buttonAction} onClick={this.confirmButtonClicked} >I CONFIRM</Button>
         </div>;
     }
@@ -76,6 +86,7 @@ class LikeName extends React.Component {
             className="ui button">{(this.state.isOpen ? "NEVER MIND": "I WANT THIS")}
         </button>
         {container}
+        <Popup ref={this.popupRef}/>
       </div>
     );
   }
