@@ -14,10 +14,12 @@ class Meals extends Component {
       description: '',
       number: '',
       location: '',
-      id: 0
+      id: 0,
+      long: 0,
+      lat: 0
     };
-    this.postToServer = this.postToServer.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    // this posts to the server
+    this.updateValues = this.updateValues.bind(this);
   }
 
   componentDidMount() {
@@ -44,10 +46,6 @@ class Meals extends Component {
       });
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
   /* use to delete all posts */
   deletePosts = () => {
     fetch('/api/posts/', { method: 'DELETE' })
@@ -58,17 +56,28 @@ class Meals extends Component {
       });
   }
 
-  postToServer() {
-    const {author, name, number, description} = this.state;
-    const data = [...this.state.data, {author, name, description, number}];
-    this.setState({ data });
-    fetch('/api/newfood/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({author, description, number:parseInt(number), name})
-    }).then(res => res.json()).then((res) => {
-      if (!res.success) console.log("holyy");
-      else this.setState({author: '',description: '',number: '',name: '' });
+  updateValues(obj) {
+    this.setState({
+      location: obj['location'],
+      author: obj['author'],
+      name: obj['name'],
+      description: obj['description'],
+      number: obj['number'],
+      long: obj['long'],
+      lat: obj['lat']
+    }, () => {
+      const {author, name, number, description, location, long, lat} = this.state;
+      const data = [...this.state.data, {author, name, description, number,location, long, lat}];
+      console.log(data);
+      this.setState({ data });
+      fetch('/api/newfood/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({author, description, number:parseInt(number), name,location})
+      }).then(res => res.json()).then((res) => {
+        if (!res.success) console.log("holyy");
+        else this.setState({author: '',description: '',number: '',name: '', location:'', long: 0, lat: 0});
+      });
     });
   }
 
@@ -89,7 +98,7 @@ class Meals extends Component {
     return (
       <div>
         <Nav />
-        <AddMeal handleChange={this.handleChange} postToServer={this.postToServer}/>
+        <AddMeal updateValues={this.updateValues} postToServer={this.postToServer}/>
         <Post like={this.like} posts={this.state.data}/>
       </div>
     );
