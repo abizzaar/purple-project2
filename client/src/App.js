@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Navigation from './Navigation.js'
+import Nav from './Nav.js'
 import Main from './Main.js'
 
 class App extends Component {
@@ -8,9 +8,8 @@ class App extends Component {
   }
   render() {
     return  <div>
-              <Navigation/>
               <Main/>
-            </div> 
+            </div>
   }
 }
 

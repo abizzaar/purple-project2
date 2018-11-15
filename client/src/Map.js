@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import Nav from './Nav.js';
 
 class GMap extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class GMap extends Component {
   render() {
     return (
       <div>
-        <div>A MAP IS AN ABSTRACTION OF THE WORLD. NOT THE WORLD ITSELF.</div>
+        <Nav />
         <Map
           google={this.props.google}
           zoom={14}

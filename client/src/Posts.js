@@ -8,6 +8,7 @@ const lowerNavCss = {
   marginTop: "3rem",
   marginLeft: "8px",
   marginRight: "8px",
+  fontSize: "18px"
 };
 
 const header = {
@@ -17,9 +18,12 @@ const header = {
 const postStyle = {
   display: "flex",
   flexDirection: "row",
-  alignContent: "center",
+  alignItems: "flex-start",
   justifyContent: "space-around",
   flexWrap: "wrap",
+  marginLeft: "auto",
+  marginRight: "auto",
+  maxWidth: "1300px"
 };
 
 class Post extends Component {
@@ -38,8 +42,8 @@ class Post extends Component {
               <div style={header} className="header">
                 {post.name}
               </div>
-              <div className="meta">&#8226; by {post.author} </div>
-              <div className="meta">&#8226; MEALS AVAILABLE: {post.number}</div>
+              <div className="meta">Chef: {post.author} </div>
+              <div className="meta">Meals Left: {post.number}</div>
               <div className="description">{post.description}</div>
             </div>
             <LikeName like={this.props.like} post={post} />

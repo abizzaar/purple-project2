@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Nav from './Nav.js';
 
 class Recipes extends Component {
   constructor() {
@@ -6,8 +7,13 @@ class Recipes extends Component {
   }
 
   render() {
-    return <div>THIS IS THE RECIPES PAGE</div>
-  } 
+    return (
+      <div>
+        <Nav />
+        <div>THIS IS THE RECIPES PAGE</div>
+      </div>
+    )
+  }
 }
 
 export default Recipes;
