@@ -64,7 +64,7 @@ class GMap extends Component {
           {this.state.data.map(post => (
             <Marker
               onClick={this.onMarkerClick}
-              name={post.name}
+              name={"Meal: " + post.name + ", Chef: " + post.author}
               position={{ lat: post.lat, lng: post.long }}
             />
           ))}
