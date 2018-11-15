@@ -10,6 +10,8 @@ const PostSchema = new Schema({
   number: Number,
   name: String,
   location: String,
+  lat: Number,
+  long: Number,
   likes: [ {type : mongoose.Schema.ObjectId, ref : 'Like'} ],
   comments: [ {type : mongoose.Schema.ObjectId, ref : 'Comment'} ]
 }, { timestamps: true });
