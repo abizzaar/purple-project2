@@ -44,11 +44,12 @@ class AddMealForm extends Component {
     this.state = {
       location: '',
       lat: 0,
-      long: 0
+      long: 0,
+      locationVal: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.clickedCurrentLocation = this.clickedCurrentLocation.bind(this);
-
+    this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
   handleClick(e) {
@@ -68,8 +69,7 @@ class AddMealForm extends Component {
         Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
           response => {
             const address = response.results[0].formatted_address;
-            console.log(address);
-            // This is where we show to the user
+            this.setState({locationVal: address});
           }, error => {
             console.error(error);
           }
@@ -78,6 +78,12 @@ class AddMealForm extends Component {
           this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' });
       })
     }
+  }
+
+  handleLocationChange(e) {
+    console.log(e.target.value);
+    this.setState({ locationVal: e.target.value });
+    this.props.handleChange(e);
   }
 
   render() {
@@ -107,7 +113,7 @@ class AddMealForm extends Component {
           <label>Location</label>
           <Button type='submit' onClick={this.clickedCurrentLocation}>Use my current location</Button>
           <div className={"m-1"}>
-            <input onChange={this.props.handleChange} name="location"/>
+            <input onChange={this.handleLocationChange} name="location" value={this.state.locationVal}/>
           </div>
         </Form.Field>
         <Button style={buttonAction} type='submit' onClick={this.handleClick}>I PROMISE TO COOK</Button>
