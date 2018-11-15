@@ -59,16 +59,16 @@ class Meals extends Component {
   }
 
   postToServer() {
-    const {author, name, number, description} = this.state;
-    const data = [...this.state.data, {author, name, description, number}];
+    const {author, name, number, description, location} = this.state;
+    const data = [...this.state.data, {author, name, description, number,location}];
     this.setState({ data });
     fetch('/api/newfood/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({author, description, number:parseInt(number), name})
+      body: JSON.stringify({author, description, number:parseInt(number), name,location})
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("holyy");
-      else this.setState({author: '',description: '',number: '',name: '' });
+      else this.setState({author: '',description: '',number: '',name: '', location:''});
     });
   }
 
