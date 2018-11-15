@@ -73,7 +73,7 @@ class Meals extends Component {
       fetch('/api/newfood/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({author, description, number:parseInt(number), name,location})
+        body: JSON.stringify({author, description, number:parseInt(number), name,location, long, lat})
       }).then(res => res.json()).then((res) => {
         if (!res.success) console.log("holyy");
         else this.setState({author: '',description: '',number: '',name: '', location:'', long: 0, lat: 0});
