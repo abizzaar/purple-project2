@@ -74,7 +74,7 @@ class GMap extends Component {
             visible={this.state.showingInfoWindow}
           >
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              <h4>{this.state.selectedPlace.name}</h4>
             </div>
           </InfoWindow>
         </Map>
