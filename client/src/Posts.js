@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LikeName from "./LikeName.js";
-import { Button, Header, Icon, Modal, Card } from 'semantic-ui-react'
+
 const lowerNavCss = {
   display: "flex",
   textAlign: "center",
@@ -45,7 +45,7 @@ class Post extends Component {
               <div className="meta">Meals Left: {post.number}</div>
               <div className="description">{post.description}</div>
             </div>
-            <LikeName like={this.props.like} post={post} />
+            <LikeName buttonTxt={this.props.buttonTxt} like={this.props.like} post={post} />
           </div>
         );
       }

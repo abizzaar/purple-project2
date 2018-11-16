@@ -87,7 +87,7 @@ class MealRequest extends Component {
       <div>
         <Nav />
         <RequestMeal handleChange={this.handleChange} postToServer={this.postToServer}/>
-        <Post like={this.like} posts={this.state.data}/>
+        <Post buttonTxt="I'LL COOK THIS" like={this.like} posts={this.state.data}/>
       </div>
     );
   }

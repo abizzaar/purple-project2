@@ -83,7 +83,7 @@ class LikeName extends React.Component {
         <button 
             onClick={() => {this.buttonClicked(this.props.post._id)}}
             style={(this.state.isOpen ? buttonCss: buttonAction)} 
-            className="ui button">{(this.state.isOpen ? "NEVER MIND": "I WANT THIS")}
+            className="ui button">{(this.state.isOpen ? "NEVER MIND": this.props.buttonTxt)}
         </button>
         {container}
         <Popup ref={this.popupRef}/>

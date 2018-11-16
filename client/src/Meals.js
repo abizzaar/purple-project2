@@ -102,7 +102,7 @@ class Meals extends Component {
         <AddMeal className="m-6" handleChange={this.handleChange} 
           postToServer={this.postToServer} updateValues={this.updateValues}/>
 
-        <Post like={this.like} posts={this.state.data}/>
+        <Post buttonTxt="I WANT THIS" like={this.like} posts={this.state.data}/>
       </div>
     );
   }
