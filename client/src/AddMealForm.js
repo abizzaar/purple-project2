@@ -15,17 +15,6 @@ const buttonAction = {
     // Enable or disable logs. Its optional.
     Geocode.enableDebug();
 
-  // // Get latidude & longitude from address.
-  // Geocode.fromAddress("Eiffel Tower").then(
-  //   response => {
-  //     const { lat, lng } = response.results[0].geometry.location;
-  //     console.log(lat, lng);
-  //   },
-  //   error => {
-  //     console.error(error);
-  //   }
-  // );
-
 class AddMealForm extends Component {
 
   constructor(props) {
@@ -56,7 +45,6 @@ class AddMealForm extends Component {
           lat: lat
         }, () => {
           this.props.updateValues(this.state);
-
         });
       },
       error => {
@@ -115,10 +103,6 @@ class AddMealForm extends Component {
         <Form.Field>
           <label>Describe your dish</label>
           <input onChange={this.handleChange} name="description" />
-        </Form.Field>
-        <Form.Field>
-          <label>Choose from your uploaded images</label>
-          <radio onChange={this.handleChange} name="uploadedImages" />
         </Form.Field>
         <Form.Field>
           <label>Location</label>
