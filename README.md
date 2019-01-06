@@ -4,6 +4,8 @@
 
 Built using the MERN stack, a software stack of free and open-source JS software for web development consisting of MongoDB, Express.js, React.js, Node.js.
 
+![screenshots](companero.png)
+
 Technologies Used:
 ---------
 1. **yarn** (package manager, can also use npm)
