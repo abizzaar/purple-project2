@@ -22,4 +22,4 @@ $ yarn start:dev
 ```
 This will start both the React web app and backend server simultaneously and will automatically open the webapp on your browser.
 
-For the curious folk, if you want to only start the backend server: `$ yarn start:server`, and if you only want to start the React app: `$ yarn start:client`.
+If you want to only start the backend server: `$ yarn start:server`, and if you only want to start the React app: `$ yarn start:client`.
